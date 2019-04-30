@@ -1,6 +1,5 @@
 import discord
 import asyncio
-#import aiohttp
 from discord import *
 from discord import Game
 from discord.message import *
@@ -15,17 +14,13 @@ client = Bot(command_prefix = BOT_PREFIX)
 
 @client.command(pass_context = True)
 @commands.has_permissions(manage_messages = True)
-async def embed(ctx, chan: discord.TextChannel, titl, link, image, desc = None):
+async def embed(ctx, sendToChannel: discord.TextChannel, embedTitle, embedLink, embedImage, embedDesc = None):
     embed = discord.Embed(color = 0x36393E)
-    embed.set_image(url = image)
-    embed.add_field(name = "Guild Name", value = titl, inline = True)
-    embed.add_field(name = "Link", value = link, inline = True)
+    embed.set_image(url = embedImage)
+    embed.add_field(name = "Guild Name", value = embedTitle, inline = True)
+    embed.add_field(name = "Link", value = embedLink, inline = True)
     if desc != None:
-        embed.add_field(name = "Description", value = desc, inline = False)
-    await client.get_channel(chan.id).send(embed = embed)
-
-@client.command(pass_context = True)
-async def search(query):
-    return
+        embed.add_field(name = "Description", value = embedDesc, inline = False)
+    await client.get_channel(sendToChannel.id).send(embed = embed)
 
 client.run(TOKEN)
