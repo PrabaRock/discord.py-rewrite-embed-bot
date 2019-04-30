@@ -1,9 +1,9 @@
 import discord
 import asyncio
 from discord import *
-from discord import Game
 from discord.message import *
 from discord.ext.commands import Bot
+from discord.ext.commands import ConversionError #Will end up using later for errors, just not sure where to implement it yet lol
 from discord.ext import commands
 
 BOT_PREFIX = ("e.")
