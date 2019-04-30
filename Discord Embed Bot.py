@@ -23,7 +23,7 @@ async def embed(ctx, sendToChannel: discord.TextChannel, embedTitle, embedLink, 
     embed.set_image(url = embedImage)
     embed.add_field(name = "Guild Name", value = embedTitle, inline = True)
     embed.add_field(name = "Link", value = embedLink, inline = True)
-    if desc != None:
+    if embedDesc != None:
         embed.add_field(name = "Description", value = embedDesc, inline = False)
     await client.get_channel(sendToChannel.id).send(embed = embed)
 
