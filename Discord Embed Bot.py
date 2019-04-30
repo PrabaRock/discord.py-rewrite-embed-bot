@@ -3,7 +3,7 @@ import asyncio
 from discord import *
 from discord.message import *
 from discord.ext.commands import Bot
-from discord.ext.commands import ConversionError #Will end up using later for errors, just not sure where to implement it yet lol
+from discord.ext.commands import ConversionError #remembered what I was going to use it for: find the error raised if not enough inputs are inputted for embed command, prevent txt file (substitute for db file) from being written in so it doesn't store faulty data and break everything
 from discord.ext import commands
 
 BOT_PREFIX = ("e.")
