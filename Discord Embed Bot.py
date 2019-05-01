@@ -1,17 +1,16 @@
 import discord
 import os
 import asyncio
-from discord import *
 from discord.message import *
 from discord.ext.commands import Bot
-from discord.ext.commands import ConversionError #remembered what I was going to use it for: find the error raised if not enough inputs are inputted for embed command, prevent txt file (substitute for db file) from being written in so it doesn't store faulty data and break everything
+#from discord.ext.commands import ConversionError #remembered what I was going to use it for: find the error raised if not enough inputs are inputted for embed command, prevent txt file (substitute for db file) from being written in so it doesn't store faulty data and break everything
 from discord.ext import commands
 
 BOT_PREFIX = ("e.")
-TOKEN = "<bot token>"
+TOKEN = ""
 client = Bot(command_prefix = BOT_PREFIX)
 
-path = '<add path>'
+path = ''
 
 @client.command(name = "embed",
                 brief = "Does embedding.",
@@ -54,19 +53,19 @@ async def embed(ctx, sendToChannel: discord.TextChannel, embedTitle, embedInvite
 
 @client.command(hidden = True,
                 pass_context = True) #pass needed so I can use ctx
+@commands.has_permissions(manage_messages = True)
 async def cleardb(ctx, flag = None):
-    if ctx.message.author.id == "156179325421486081" or "150417106549211136": #dream or me
-        if flag == None:
-            await ctx.channel.send("Clearing all data...")
-            for bdir, dirs, files in os.walk(path):
-                for fname in files:
-                    print(bdir, fname)
-                    os.remove(path + fname)
-            await ctx.channel.send("Done.")
-        elif flag != None:
-            await ctx.channel.send("Clearing specific file...")
-            os.remove(path + flag + ".txt")
-            await ctx.channel.send("Done.")
+    if flag == None:
+        await ctx.channel.send("Clearing all data...")
+        for bdir, dirs, files in os.walk(path):
+            for fname in files:
+                print(bdir, fname)
+                os.remove(path + fname)
+        await ctx.channel.send("Done.")
+    elif flag != None:
+        await ctx.channel.send("Clearing specific file...")
+        os.remove(path + flag + ".txt")
+        await ctx.channel.send("Done.")
 
 @client.command(hidden = True,
                 pass_context = True)
